@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "867876589521",
+    "firebase_url": "https://truck-7de72.firebaseio.com",
+    "project_id": "truck-7de72",
+    "storage_bucket": "truck-7de72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:867876589521:android:85b1196d25381a11299af0",
+        "android_client_info": {
+          "package_name": "com.example.driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "867876589521-7fkff1o2mncfo6pjlnri9ml4cvrric58.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_TvPenPhsQCQJX_T4dgaagJapZcMvRBY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "867876589521-7fkff1o2mncfo6pjlnri9ml4cvrric58.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:867876589521:android:19bab54b3e57eb5b299af0",
+        "android_client_info": {
+          "package_name": "com.example.truckrent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "867876589521-7fkff1o2mncfo6pjlnri9ml4cvrric58.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_TvPenPhsQCQJX_T4dgaagJapZcMvRBY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "867876589521-7fkff1o2mncfo6pjlnri9ml4cvrric58.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

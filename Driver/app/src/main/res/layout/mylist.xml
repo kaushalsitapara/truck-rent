@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20sp">
+    <TextView
+        android:padding="10sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="From : 49,Laxminagar soc,Opp. D-mart,Sarthana Jakat Naka,Nirmal Nagar Society,Nana Varachha,Surat,Gujarat 395006,India"
+        android:textSize="20sp"
+        android:id="@+id/txtFrom"
+        android:textColor="#000000"
+        />
+    <TextView
+        android:padding="10sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="To : 49,Laxminagar soc,Opp. D-mart,Sarthana Jakat Naka,Nirmal Nagar Society,Nana Varachha,Surat,Gujarat 395006,India"
+        android:textSize="20sp"
+        android:layout_below="@+id/txtFrom"
+        android:id="@+id/txtTo"
+        android:textColor="#000000"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Status"
+        android:id="@+id/txtStatus"
+        android:layout_below="@+id/txtTo"
+        android:textColor="#000000"
+        android:textSize="30sp"/>
+</RelativeLayout>

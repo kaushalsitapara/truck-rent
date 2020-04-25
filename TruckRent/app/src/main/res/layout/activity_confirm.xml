@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".client.ConfirmActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Distance"
+        android:id="@+id/txtDis"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10sp"
+        android:textSize="30sp"/>
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/vehicalType"
+        android:layout_below="@+id/txtDis"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vehicalType"
+        android:text="Fare"
+        android:id="@+id/totalFare"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30sp"
+        android:textSize="40sp"/>
+    <Button
+        android:id="@+id/start_transaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/totalFare"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30sp"
+        android:text="Pay Now"/>
+</RelativeLayout>
