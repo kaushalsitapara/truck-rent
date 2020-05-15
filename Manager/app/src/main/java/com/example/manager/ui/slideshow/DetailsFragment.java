@@ -1,4 +1,4 @@
-package com.example.driver.ui.slideshow;
+package com.example.manager.ui.slideshow;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.driver.R;
+import com.example.manager.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,25 +26,25 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class SlideshowFragment extends Fragment {
-    String fname,licNo;
-    TextView txtName, txtlicNo, txtTotal;
+public class DetailsFragment extends Fragment {
+    int pos = 0;
+    TextView txtName,txtlicNo,txtTotal;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     public static ArrayList<String> clientDocumentId = new ArrayList<String>();
-    double total = 0;
-
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+double total=0;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_details2, container, false);
+        pos = getArguments().getInt("pos");
         txtName= root.findViewById(R.id.txtName);
+        txtName.setText(SlideshowFragment.fname.get(pos));
         txtlicNo= root.findViewById(R.id.txtlicNo);
+        txtlicNo.setText(SlideshowFragment.licNo.get(pos));
         txtTotal= root.findViewById(R.id.tctTotal);
         LoadAddressAsyncTask task = new LoadAddressAsyncTask(getContext());
         task.execute();
-
         return root;
     }
 
@@ -63,26 +63,7 @@ public class SlideshowFragment extends Fragment {
         protected Void doInBackground(Void... voids) {
 
             FirebaseUser user = mAuth.getCurrentUser();
-            final DocumentReference docRef = db.collection("driver").document(user.getUid());
-            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            Log.d("TAG", "DocumentSnapshot data: " + document.getData());
-                            fname=document.get("fname").toString();
-                            licNo=document.get("licNo").toString();
-                            txtName.setText(fname);
-                            txtlicNo.setText(licNo);
-                        } else {
-                            Log.d("TAG", "No such document");
-                        }
-                    } else {
-                        Log.d("TAG", "get failed with ", task.getException());
-                    }
-                }
-            });
+
             db.collection("client")
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -122,16 +103,15 @@ public class SlideshowFragment extends Fragment {
                                                             FieldPath fieldPath = FieldPath.of(requests.get(i), "status");
                                                             Log.d("TAG", document.getId() + " => " + requests.get(i) + document.get(fieldPath));
                                                             if (document.get(fieldPath).toString().equals("Complete")) {
-                                                                String temp = document.get(FieldPath.of(requests.get(i), "driver")).toString();
-                                                                Log.e("Total from db", temp);
-
-                                                                if (temp.equals(fname + "      " + licNo)) {
-                                                                    Log.e("Total from db", document.get(FieldPath.of(requests.get(i), "total")).toString());
-                                                                    total = total + Double.valueOf(document.get(FieldPath.of(requests.get(i), "total")).toString());
+                                                                String temp =document.get(FieldPath.of(requests.get(i),"driver")).toString();
+                                                                Log.e("Total from db",temp);
+                                                                Log.e("Total 1",SlideshowFragment.fname.get(pos)+"      "+SlideshowFragment.licNo.get(pos));
+                                                                if(temp.equals(SlideshowFragment.fname.get(pos)+"      "+SlideshowFragment.licNo.get(pos))){
+                                                                    Log.e("Total from db",document.get(FieldPath.of(requests.get(i),"total")).toString());
+                                                                    total=total+Double.valueOf(document.get(FieldPath.of(requests.get(i),"total")).toString());
                                                                 }
-                                                                Log.e("Total", total + "");
-                                                                txtTotal.setText(total + "");
-
+                                                                Log.e("Total",total+"");
+                                                                txtTotal.setText(total+"");
                                                                /* request1.add(requests.get(i));
                                                                 statusReq.add(document.get(fieldPath).toString());
                                                                 pickAddress.add(document.get(FieldPath.of(requests.get(i), "pAdd")).toString());
@@ -168,4 +148,3 @@ public class SlideshowFragment extends Fragment {
         }
     }
 }
-

@@ -40,6 +40,7 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
     public static ArrayList<String> totalFare = new ArrayList<String>();
     public static ArrayList<String> totalDist = new ArrayList<String>();
     public static ArrayList<String> statusReq = new ArrayList<String>();
+    public static ArrayList<String> otp = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

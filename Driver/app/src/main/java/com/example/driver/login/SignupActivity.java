@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,8 +32,9 @@ import com.google.firebase.firestore.Query;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignupActivity extends AppCompatActivity implements View.OnClickListener{
+public class SignupActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private FirebaseAuth mAuth;
+    String vType;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,14 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         final TextView logBt = findViewById(R.id.txt1);
         logBt.setOnClickListener(this);
         regBt.setOnClickListener(this);
+
+        Spinner spinner = (Spinner) findViewById(R.id.vType);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.vType_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
     }
 
     @Override
@@ -71,7 +83,13 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d("SignUpActivity", "createUserWithEmail:success");
                                         FirebaseUser user = mAuth.getCurrentUser();
+                                        Map<String, Object> data1 = new HashMap<>();
+                                        data1.put("pickupLag","");
+                                        data1.put("pickupLat","");
+                                        data1.put("dropupLag","");
+                                        data1.put("dropupLat","");
                                         Map<String, Object> data = new HashMap<>();
+                                        data.put("delivery",data1);
                                         data.put("fname",fname.getText().toString());
                                         data.put("lname",lname.getText().toString());
                                         data.put("mobile",mobile.getText().toString());
@@ -79,6 +97,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                                         data.put("email",email.getText().toString());
                                         data.put("licNo",licNo.getText().toString());
                                         data.put("regNo",regNo.getText().toString());
+                                        data.put("vType",vType);
                                         db.collection("driver").document(user.getUid())
                                                 .set(data)
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -114,5 +133,18 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
         }
 
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            vType=parent.getItemAtPosition(position).toString();
+
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+            vType="3 Wheeler";
     }
 }

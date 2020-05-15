@@ -34,7 +34,7 @@ public class DetailsFragment extends Fragment {
         txtTo.setText("To: "+ NavigationActivity.dropAddress.get(pos));
         txtDist.setText("Distance: "+ NavigationActivity.totalDist.get(pos));
         txtFare.setText("Total Fare: "+ NavigationActivity.totalFare.get(pos));
-        txtStatus.setText("Status: "+NavigationActivity.statusReq.get(pos));
+        txtStatus.setText("Status: "+NavigationActivity.statusReq.get(pos)+"\n"+"OTP: "+NavigationActivity.otp.get(pos));
         return root;
 
     }

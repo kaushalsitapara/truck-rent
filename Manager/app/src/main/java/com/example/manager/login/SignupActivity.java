@@ -74,7 +74,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                                         data.put("mobile",mobile.getText().toString());
                                         data.put("password",password.getText().toString());
                                         data.put("email",email.getText().toString());
-                                        db.collection("client").document(user.getUid())
+                                        db.collection("manage").document(user.getUid())
                                                 .set(data)
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override

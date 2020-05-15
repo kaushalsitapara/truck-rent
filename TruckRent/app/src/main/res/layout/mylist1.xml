@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20sp">
+    <TextView
+        android:padding="10sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="From : 49,Laxminagar soc,Opp. D-mart,Sarthana Jakat Naka,Nirmal Nagar Society,Nana Varachha,Surat,Gujarat 395006,India"
+        android:textSize="20sp"
+        android:id="@+id/txtFrom"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:padding="10sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="To : 49,Laxminagar soc,Opp. D-mart,Sarthana Jakat Naka,Nirmal Nagar Society,Nana Varachha,Surat,Gujarat 395006,India"
+        android:textSize="20sp"
+        android:layout_below="@+id/txtFrom"
+        android:id="@+id/txtTo"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Status"
+        android:id="@+id/txtStatus"
+        android:layout_below="@+id/txtTo"
+        android:textColor="@color/black"
+        android:textSize="30sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Driver Details"
+        android:id="@+id/txtDriver"
+        android:layout_below="@+id/txtStatus"
+        android:textColor="@color/black"
+        android:textSize="30sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Bill Details"
+        android:id="@+id/txtTotal"
+        android:layout_below="@+id/txtDriver"
+        android:textColor="@color/black"
+        android:textSize="30sp"/>
+
+</RelativeLayout>

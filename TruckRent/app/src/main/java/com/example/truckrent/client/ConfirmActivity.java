@@ -31,6 +31,7 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class ConfirmActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener , View.OnClickListener {
 
@@ -38,7 +39,7 @@ public class ConfirmActivity extends AppCompatActivity implements AdapterView.On
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     String pAdd,pPin,pCity,dAdd,dPin,dCity;
-    String pLat,pLan,dLat,dLan;
+    String pLat,pLan,dLat,dLan,vType;
     float fareRate = 0;
     float[] results = new float[1];
     @Override
@@ -86,19 +87,19 @@ public class ConfirmActivity extends AppCompatActivity implements AdapterView.On
         {
             fareRate=((results[0]/1000)*150);
             txtFare.setText(fareRate+" Rs");
-
+            vType="3 Wheeler";
         }
         if(position==1)
         {
             fareRate=((results[0]/1000)*250);
             txtFare.setText(fareRate+" Rs");
-
+            vType="Ace";
         }
         if(position==2)
         {
             fareRate=((results[0]/1000)*800);
             txtFare.setText(fareRate+" Rs");
-
+            vType="8ft Truck";
         }
     }
 
@@ -124,7 +125,14 @@ public class ConfirmActivity extends AppCompatActivity implements AdapterView.On
         data.put("dPin",dPin);
         data.put("dist",results[0]);
         data.put("total",fareRate);
+        data.put("vType",vType);
+        data.put("driver","Assign Soon");
         data.put("status","Requested");
+        Random rnd = new Random();
+        int number = rnd.nextInt(999999);
+        String uniqueOtp=String.format("%06d",number);
+        NavigationActivity.otp.add(uniqueOtp);
+        data.put("otp",uniqueOtp);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy MM dd 'at' HH:mm:ss z");
         Map<String, Object> data1 = new HashMap<>();
         data1.put("Request At "+ sdf.format(new Date()).toString(),data);
